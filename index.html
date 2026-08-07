@@ -258,6 +258,11 @@
   .notif-btn{flex:1;height:50px;border-radius:14px;border:none;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;cursor:pointer;}
   .notif-btn.reject{background:var(--surface-muted);color:var(--text-secondary);}
   .notif-btn.accept{background:linear-gradient(135deg,var(--primary-violet),var(--accent-terracotta));color:var(--white);}
+  .facts-row{background:var(--surface-muted);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;}
+  .facts-meta{font-size:12px;font-weight:600;color:var(--text-primary);}
+  .facts-badges{display:flex;gap:6px;flex-wrap:wrap;}
+  .facts-badge{display:flex;align-items:center;gap:4px;padding:4px 8px;border-radius:8px;background:var(--accent-violet-light);font-size:10px;font-weight:600;color:var(--primary-violet-dark);}
+  .facts-badge svg{width:11px;height:11px;stroke:var(--primary-violet-dark);}
   .past-row{display:flex;align-items:center;gap:12px;padding:16px;border-radius:16px;background:var(--white);border:1px solid var(--border-subtle);opacity:.7;}
   .past-row svg{width:20px;height:20px;stroke:var(--success-green);flex:0 0 auto;}
   .past-text{flex:1;display:flex;flex-direction:column;gap:2px;}
@@ -349,14 +354,14 @@
               <button class="toggle-btn" data-group="bautismo" data-val="no">No</button>
             </div>
           </div>
-          <div class="field hide" id="cond-espiritu-wrap">
+          <div class="field" id="cond-espiritu-wrap">
             <label>¿Recibiste el Espíritu Santo?</label>
             <div class="toggle-row">
               <button class="toggle-btn on" data-group="espiritu" data-val="si">Sí</button>
               <button class="toggle-btn" data-group="espiritu" data-val="no">No</button>
             </div>
           </div>
-          <div class="field hide" id="cond-fecha-wrap">
+          <div class="field" id="cond-fecha-wrap">
             <label>Mes y año</label>
             <div class="input"><input placeholder="Ej: Marzo 2021" /></div>
           </div>
@@ -376,11 +381,11 @@
         <div class="field">
           <label>¿Estuviste en alguna relación antes?</label>
           <div class="toggle-row">
-            <button class="toggle-btn" data-group="relacion" data-val="no">Sí</button>
-            <button class="toggle-btn on" data-group="relacion" data-val="si">No</button>
+            <button class="toggle-btn on" data-group="relacion" data-val="si">Sí</button>
+            <button class="toggle-btn" data-group="relacion" data-val="no">No</button>
           </div>
         </div>
-        <div class="cond-card hide" id="cond-relacion">
+        <div class="cond-card" id="cond-relacion">
           <div class="field">
             <label>Tipo de relación</label>
             <div class="select"><select class="select-native"><option>Casado</option><option>De novio</option></select>
@@ -540,6 +545,10 @@
             <div class="result-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
             <div><p class="result-name">Nicolás Fernández</p><p class="result-meta">29 años · Sede Nacional · Obrero</p></div>
           </div>
+          <div class="facts-badges">
+            <div class="facts-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Bautizado</div>
+            <div class="facts-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Espíritu Santo</div>
+          </div>
           <hr class="divider"/>
           <div class="loc-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Estará en el Parque Tres de Febrero</span></div>
           <button class="primary-btn" id="request-btn" onclick="sendRequest()">Solicitar más datos</button>
@@ -574,7 +583,7 @@
           <p class="nav-title">Notificaciones</p>
         </div>
 
-        <div class="notif-card" id="notif-request">
+        <div class="notif-card" id="notif-nicolas" data-name="Nicolás Fernández">
           <div class="notif-top">
             <div class="notif-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
             <div class="notif-text">
@@ -582,9 +591,77 @@
               <p>quiere ver más datos de tu perfil</p>
             </div>
           </div>
+          <div class="facts-row">
+            <span class="facts-meta">29 años · Sede Nacional · Obrero</span>
+            <div class="facts-badges">
+              <div class="facts-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Bautizado</div>
+              <div class="facts-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Espíritu Santo</div>
+            </div>
+          </div>
           <div class="notif-btn-row">
-            <button class="notif-btn reject" onclick="rejectRequest()">Rechazar</button>
-            <button class="notif-btn accept" onclick="acceptRequest()">Aceptar</button>
+            <button class="notif-btn reject" onclick="rejectRequest(this)">Rechazar</button>
+            <button class="notif-btn accept" onclick="acceptRequest(this)">Aceptar</button>
+          </div>
+        </div>
+
+        <div class="notif-card" id="notif-martin" data-name="Martín Ramírez">
+          <div class="notif-top">
+            <div class="notif-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="notif-text">
+              <div class="notif-title-row"><b>Martín Ramírez</b><span>Hace 1 hora</span></div>
+              <p>quiere ver más datos de tu perfil</p>
+            </div>
+          </div>
+          <div class="facts-row">
+            <span class="facts-meta">27 años · Iglesia Vida Nueva · Colaborador</span>
+            <div class="facts-badges">
+              <div class="facts-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Bautizado</div>
+            </div>
+          </div>
+          <div class="notif-btn-row">
+            <button class="notif-btn reject" onclick="rejectRequest(this)">Rechazar</button>
+            <button class="notif-btn accept" onclick="acceptRequest(this)">Aceptar</button>
+          </div>
+        </div>
+
+        <div class="notif-card" id="notif-lucas" data-name="Lucas Medina">
+          <div class="notif-top">
+            <div class="notif-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="notif-text">
+              <div class="notif-title-row"><b>Lucas Medina</b><span>Hace 3 horas</span></div>
+              <p>quiere ver más datos de tu perfil</p>
+            </div>
+          </div>
+          <div class="facts-row">
+            <span class="facts-meta">31 años · Sede Nacional · CPO</span>
+            <div class="facts-badges">
+              <div class="facts-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Bautizado</div>
+              <div class="facts-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Espíritu Santo</div>
+            </div>
+          </div>
+          <div class="notif-btn-row">
+            <button class="notif-btn reject" onclick="rejectRequest(this)">Rechazar</button>
+            <button class="notif-btn accept" onclick="acceptRequest(this)">Aceptar</button>
+          </div>
+        </div>
+
+        <div class="notif-card" id="notif-tomas" data-name="Tomás Ibarra">
+          <div class="notif-top">
+            <div class="notif-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="notif-text">
+              <div class="notif-title-row"><b>Tomás Ibarra</b><span>Ayer</span></div>
+              <p>quiere ver más datos de tu perfil</p>
+            </div>
+          </div>
+          <div class="facts-row">
+            <span class="facts-meta">26 años · Sede Nacional · Miembro</span>
+            <div class="facts-badges">
+              <div class="facts-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Bautizado</div>
+            </div>
+          </div>
+          <div class="notif-btn-row">
+            <button class="notif-btn reject" onclick="rejectRequest(this)">Rechazar</button>
+            <button class="notif-btn accept" onclick="acceptRequest(this)">Aceptar</button>
           </div>
         </div>
 
@@ -719,16 +796,20 @@
   }
 
   // notifications accept/reject
-  function acceptRequest(){
-    document.getElementById('notif-request').classList.add('hide');
-    addPastEntry('Aceptaste la solicitud de Nicolás Fernández', 'Ahora');
-    addSharedEntry();
-    showToast('Aceptaste la solicitud de Nicolás');
+  function acceptRequest(btn){
+    const card = btn.closest('.notif-card');
+    const name = card.dataset.name;
+    card.classList.add('hide');
+    addPastEntry('Aceptaste la solicitud de ' + name, 'Ahora');
+    if (name === 'Nicolás Fernández') addSharedEntry();
+    showToast('Aceptaste la solicitud de ' + name.split(' ')[0]);
   }
-  function rejectRequest(){
-    document.getElementById('notif-request').classList.add('hide');
-    addPastEntry('Rechazaste la solicitud de Nicolás Fernández', 'Ahora');
-    showToast('Rechazaste la solicitud de Nicolás');
+  function rejectRequest(btn){
+    const card = btn.closest('.notif-card');
+    const name = card.dataset.name;
+    card.classList.add('hide');
+    addPastEntry('Rechazaste la solicitud de ' + name, 'Ahora');
+    showToast('Rechazaste la solicitud de ' + name.split(' ')[0]);
   }
   function addPastEntry(text, time){
     const list = document.getElementById('past-list');
