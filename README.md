@@ -4,7 +4,7 @@ Prototipo clickeable del wireframe de la app **Caminata del Amor**, hecho en HTM
 
 ## Ver la demo
 
-👉 **[Abrir la demo](https://REPLACE_WITH_PAGES_URL/)**
+👉 **[Abrir la demo](https://metawebargentina-213.github.io/caminata-del-amor-demo/)**
 
 Es un mock de las 6 pantallas de la app con navegación real:
 
